@@ -319,7 +319,7 @@ footer{background:var(--ink);color:var(--cream);padding:40px 60px;display:flex;a
     <div class="form-group"><label>Naam</label><input type="text" placeholder="Jouw naam"></div>
     <div class="form-group"><label>E-mail</label><input type="email" placeholder="jouw@email.nl"></div>
     <div class="form-group"><label>Bericht</label><textarea rows="5" placeholder="Wat wil je weten?"></textarea></div>
-    <button class="form-submit" onclick="alert('Bedankt! We nemen snel contact op. ✨')">Verstuur bericht →</button>
+    <button class="form-submit" onclick="verstuurWhatsApp()">Verstuur via WhatsApp →</button>
   </div>
 </section>
 
@@ -341,6 +341,17 @@ function loadVideo2(){
   f.allow='autoplay; encrypted-media; fullscreen';
   f.allowFullscreen=true;
   document.querySelector('#video-thumb2').parentNode.insertBefore(f,t);
+}
+function verstuurWhatsApp(){
+  var naam = document.querySelector('input[type="text"]').value;
+  var email = document.querySelector('input[type="email"]').value;
+  var bericht = document.querySelector('textarea').value;
+  if(!naam || !bericht){
+    alert('Vul je naam en bericht in!');
+    return;
+  }
+  var tekst = 'Hallo GoedCut!%0A%0ANaam: ' + encodeURIComponent(naam) + '%0AEmail: ' + encodeURIComponent(email) + '%0A%0ABericht: ' + encodeURIComponent(bericht);
+  window.open('https://wa.me/31647466475?text=' + tekst, '_blank');
 }
 function loadVideo(){
   var t=document.getElementById('video-thumb');
